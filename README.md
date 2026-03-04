@@ -22,6 +22,7 @@ A lightweight CLI tool that converts SVG icon folders into Flutter icon fonts.
 ---
 
 Short docs: `docs.md`
+Package: https://pub.dev/packages/svg_to_flutter_icons
 
 ## Why
 
