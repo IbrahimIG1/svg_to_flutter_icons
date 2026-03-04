@@ -1,25 +1,27 @@
 # svg_to_flutter_icons
 
-CLI helper that turns SVG icon folders into Flutter icon fonts.
+A lightweight CLI tool that converts SVG icon folders into Flutter icon fonts.
 It cleans SVG fills, guides you to generate a TTF in IcoMoon, then generates a
 Dart `IconData` class and updates `pubspec.yaml` automatically.
 
+Short docs: `docs.md`
+
 ## Why
 
-- Design files often have many SVG icons.
-- Using all SVGs as assets can increase app size and maintenance.
-- Icon fonts are lighter and behave like normal Flutter `Icon`s.
+- UI designs often include many SVG icons.
+- Adding all SVGs as assets increases app size and maintenance.
+- Icon fonts are smaller and behave like normal Flutter icons.
 
 ## What this tool does
 
-1) Clean SVGs by removing `fill` attributes so Flutter can control color.
-2) Generate a Dart icon class from IcoMoon `selection.json`.
-3) Update `pubspec.yaml` with the font entry.
+1) Removes fixed `fill` attributes from SVGs (so Flutter controls color).
+2) Generates a Dart icon class from IcoMoon `selection.json`.
+3) Updates `pubspec.yaml` with the font entry.
 
 ## Requirements
 
 - Dart SDK installed.
-- IcoMoon account not required (web tool).
+- IcoMoon web tool (no account required).
 - No external tools installed (TTF is created manually in IcoMoon).
 
 ## Quick start
@@ -30,20 +32,24 @@ Dart `IconData` class and updates `pubspec.yaml` automatically.
 dart run svg_to_flutter_icons --input=assets/icons
 ```
 
-This creates `assets/icons/_cleaned` with fill-free SVGs.
+Creates:
+
+```
+assets/icons/_cleaned
+```
 
 ### 2) Generate the font (manual step)
 
-Go to IcoMoon:
+Go to:
 https://icomoon.io/app/#/select
 
-- Import all SVGs from `_cleaned`
+- Import SVGs from `_cleaned`
 - Generate Font
-- Download and extract:
+- Download the ZIP and extract:
   - `selection.json`
   - the `.ttf` file
 
-Place both in your project, for example:
+Place them in your project, for example:
 
 ```
 assets/fonts/selection.json
@@ -58,9 +64,9 @@ dart run svg_to_flutter_icons --assets=assets/fonts
 
 This will:
 - Generate `lib/icons/custom_icons.dart`
-- Add the font to `pubspec.yaml`
+- Add the font entry to `pubspec.yaml`
 
-Run:
+Then run:
 
 ```bash
 flutter pub get
@@ -86,17 +92,17 @@ dart run svg_to_flutter_icons --input=assets/icons
 dart run svg_to_flutter_icons --assets=assets/fonts
 ```
 
-### Specify JSON/TTF explicitly
+### Specify JSON and TTF manually
 ```bash
 dart run svg_to_flutter_icons --assets=assets/fonts --json=selection.json --ttf=custom_icons.ttf
 ```
 
-### Generate class only (no pubspec update)
+### Generate class only (skip pubspec update)
 ```bash
 dart run svg_to_flutter_icons --json=assets/fonts/selection.json --output=lib/icons/custom_icons.dart
 ```
 
-### Customize names
+### Customize class and font family
 ```bash
 dart run svg_to_flutter_icons --assets=assets/fonts --class=AppIcons --family=AppIcons
 ```
@@ -124,10 +130,6 @@ even if a new TTF is different.
 - `No .ttf file found`: place the `.ttf` next to the JSON or pass `--ttf`.
 - `Font already exists`: the tool will reuse or suffix the font family.
 
-## Contributing
-
-Issues and PRs are welcome. Keep changes small and explain the workflow.
-
 ## Project structure
 
 Key files and what they do:
@@ -144,8 +146,10 @@ Key files and what they do:
 - `lib/src/svg_to_flutter_icons_base.utils.dart` - Console logging helpers.
 - `lib/src/svg_to_flutter_icons_base.models.dart` - Data models.
 
-## How it works (short)
+## Roadmap
 
-1) Clean SVGs (remove fill) -> `_cleaned` folder.
-2) Generate TTF + selection.json in IcoMoon.
-3) Generate Dart icon class + update `pubspec.yaml`.
+- Full automation (generate TTF without uploading SVGs to IcoMoon).
+
+## Contributing
+
+Issues and PRs are welcome. Keep changes small and explain the workflow.
