@@ -1,8 +1,25 @@
-# svg_to_flutter_icons
+<h1 align="center">svg_to_flutter_icons</h1>
 
+<p align="center">
 A lightweight CLI tool that converts SVG icon folders into Flutter icon fonts.
-It cleans SVG fills, guides you to generate a TTF in IcoMoon, then generates a
-Dart `IconData` class and updates `pubspec.yaml` automatically.
+</p>
+
+<p align="center">
+  <a href="https://pub.dev/packages/svg_to_flutter_icons">
+    <img src="https://img.shields.io/pub/v/svg_to_flutter_icons.svg" alt="pub version">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="license MIT">
+  </a>
+  <a href="https://flutter.dev">
+    <img src="https://img.shields.io/badge/platform-flutter-blue.svg" alt="platform flutter">
+  </a>
+  <a href="https://dart.dev">
+    <img src="https://img.shields.io/badge/sdk-dart-blue.svg" alt="dart sdk">
+  </a>
+</p>
+
+---
 
 Short docs: `docs.md`
 
