@@ -1,6 +1,6 @@
 name: svg_to_flutter_icons
 description: CLI tool to clean SVGs, generate icon fonts, and create Flutter IconData classes.
-version: 0.1.0
+version: 0.1.1
 repository: https://github.com/IbrahimIG1/svg_to_flutter_icons.git
 
 
