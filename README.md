@@ -166,6 +166,9 @@ Key files and what they do:
 ## Roadmap
 
 - Full automation (generate TTF without uploading SVGs to IcoMoon).
+  - Planned options for full automation:
+  - Run on a server to generate TTF from SVGs.
+  - Run offline on your PC using Node.js (npx) so no website upload is needed.
 
 ## Contributing
 
