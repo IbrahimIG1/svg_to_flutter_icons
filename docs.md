@@ -68,3 +68,20 @@ Custom class/family names:
 ```bash
 dart run svg_to_flutter_icons --assets=assets/fonts --class=AppIcons --family=AppIcons
 ```
+
+## Package Creators
+
+<table>
+  <tr>
+    <td>
+      <strong>Eng Ibrahim Algammal</strong><br/>
+      <a href="https://github.com/IbrahimIG1">github.com/IbrahimIG1</a>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Eng Khalid El-MariAa</strong><br/>
+      <a href="https://github.com/KhalidEl-MariAa">github.com/KhalidEl-MariAa</a>
+    </td>
+  </tr>
+</table>

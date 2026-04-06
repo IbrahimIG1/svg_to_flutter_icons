@@ -1,18 +1,16 @@
-// Public API used by the CLI.
-// Responsibilities:
-// - Clean SVG fills to allow color control in Flutter.
-// - Generate icon classes from IcoMoon JSON.
-// - Update pubspec.yaml and resolve merge/new-class conflicts.
-// Handles common problems like missing files, font family conflicts, and
-// existing class name collisions.
 part of 'svg_to_flutter_icons_base.dart';
 
-// Entry point used by the CLI to clean SVG files.
+/// Compatibility entry point used by the CLI to clean SVG files.
+///
+/// This delegates to [cleanSvgFolder].
 void generateIcons(String inputPath) {
   cleanSvgFolder(inputPath);
 }
 
-// Read SVG files from a folder, strip fill attributes, and write cleaned files.
+/// Cleans all `.svg` files inside [inputPath] by removing fixed `fill` values.
+///
+/// Cleaned files are written to a `_cleaned` folder under [inputPath].
+/// This allows Flutter to control icon colors at runtime.
 void cleanSvgFolder(String inputPath) {
   final directory = Directory(inputPath);
 
@@ -51,7 +49,10 @@ void cleanSvgFolder(String inputPath) {
   _logInfo('IcoMoon: https://icomoon.io/');
 }
 
-// Generate a Dart class from selection.json (IcoMoon).
+/// Generates a Dart `IconData` class from an IcoMoon `selection.json` file.
+///
+/// The generated file is written to [outputPath], using [className] and
+/// [fontFamily] as defaults unless overridden.
 void generateIconsClass({
   required String jsonPath,
   required String outputPath,
@@ -72,7 +73,10 @@ void generateIconsClass({
   );
 }
 
-// Generate the icon class and update pubspec.yaml using an assets folder.
+/// Generates icons from an assets folder that contains JSON and TTF files.
+///
+/// This workflow resolves JSON/TTF inputs, updates `pubspec.yaml` with
+/// the selected font, and writes or merges the generated icon class.
 void generateIconsFromAssets({
   required String assetsPath,
   String? outputPath,
