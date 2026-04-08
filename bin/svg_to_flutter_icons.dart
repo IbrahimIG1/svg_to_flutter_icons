@@ -8,6 +8,14 @@ void main(List<String> arguments) {
       'input',
       abbr: 'i',
       help: 'Path to the folder that contains SVG files',
+    )
+    ..addFlag(
+      'normalize-stroke',
+      abbr: 's',
+      negatable: false,
+      help:
+          'For clean mode: convert fixed stroke colors to currentColor so '
+          'stroke follows Flutter Icon color',
     );
   parser
     ..addOption(
@@ -59,6 +67,7 @@ void main(List<String> arguments) {
   final ttfFileName = results['ttf'];
   final className = results['class'];
   final familyName = results['family'];
+  final normalizeStroke = results['normalize-stroke'] == true;
 
   if (results['help'] == true ||
       (inputPath == null && jsonPath == null && assetsPath == null)) {
@@ -76,7 +85,7 @@ void main(List<String> arguments) {
 
   if (inputPath != null) {
     print('Input folder: $inputPath');
-    cleanSvgFolder(inputPath);
+    cleanSvgFolder(inputPath, normalizeStroke: normalizeStroke);
   }
 
   if (assetsPath != null) {

@@ -8,6 +8,12 @@ Simple guide to use the package fast.
 dart run svg_to_flutter_icons --input=assets/icons
 ```
 
+If icons are stroke-based and stroke color is not updating in Flutter:
+
+```bash
+dart run svg_to_flutter_icons --input=assets/icons --normalize-stroke
+```
+
 Output:
 ```
 assets/icons/_cleaned

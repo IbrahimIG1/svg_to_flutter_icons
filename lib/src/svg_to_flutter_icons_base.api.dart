@@ -3,15 +3,18 @@ part of 'svg_to_flutter_icons_base.dart';
 /// Compatibility entry point used by the CLI to clean SVG files.
 ///
 /// This delegates to [cleanSvgFolder].
-void generateIcons(String inputPath) {
-  cleanSvgFolder(inputPath);
+void generateIcons(String inputPath, {bool normalizeStroke = false}) {
+  cleanSvgFolder(inputPath, normalizeStroke: normalizeStroke);
 }
 
 /// Cleans all `.svg` files inside [inputPath] by removing fixed `fill` values.
 ///
 /// Cleaned files are written to a `_cleaned` folder under [inputPath].
 /// This allows Flutter to control icon colors at runtime.
-void cleanSvgFolder(String inputPath) {
+///
+/// If [normalizeStroke] is true, fixed `stroke` values are normalized to
+/// `currentColor` too, so stroke-based icons follow Flutter color updates.
+void cleanSvgFolder(String inputPath, {bool normalizeStroke = false}) {
   final directory = Directory(inputPath);
 
   if (!directory.existsSync()) {
@@ -37,7 +40,10 @@ void cleanSvgFolder(String inputPath) {
 
   for (final file in svgFiles) {
     final content = file.readAsStringSync();
-    final cleaned = _stripFillAttributes(content);
+    final cleaned = _normalizeSvgColors(
+      content,
+      normalizeStroke: normalizeStroke,
+    );
     final outputFile = File(
       '${outputDir.path}${Platform.pathSeparator}${file.uri.pathSegments.last}',
     );
@@ -46,6 +52,9 @@ void cleanSvgFolder(String inputPath) {
   }
 
   _logSuccess('Cleaned ${svgFiles.length} SVG file(s) into: ${outputDir.path}');
+  if (normalizeStroke) {
+    _logInfo('Stroke normalization enabled: fixed stroke colors -> currentColor');
+  }
   _logInfo('IcoMoon: https://icomoon.io/');
 }
 

@@ -55,6 +55,12 @@ Package: https://pub.dev/packages/svg_to_flutter_icons
 dart run svg_to_flutter_icons --input=assets/icons
 ```
 
+If your icons use strokes and you want stroke color to follow Flutter `Icon(color: ...)`:
+
+```bash
+dart run svg_to_flutter_icons --input=assets/icons --normalize-stroke
+```
+
 Creates:
 
 ```
@@ -110,6 +116,11 @@ Icon(CustomIcons.home, color: Colors.red);
 dart run svg_to_flutter_icons --input=assets/icons
 ```
 
+### Clean SVGs and normalize stroke colors
+```bash
+dart run svg_to_flutter_icons --input=assets/icons --normalize-stroke
+```
+
 ### Generate from assets folder
 ```bash
 dart run svg_to_flutter_icons --assets=assets/fonts
@@ -145,6 +156,8 @@ even if a new TTF is different.
 - Icon fonts are single-color. If you need multi-color icons, use SVGs.
 - If colors are not changing in Flutter, the SVG still contains fixed `fill`.
   Use the `_cleaned` folder.
+- For stroke-based icons, use `--normalize-stroke` while cleaning to convert
+  fixed `stroke` colors to `currentColor`.
 - If your terminal does not accept interactive input, pass `--json` and `--ttf`.
 
 ## Troubleshooting
